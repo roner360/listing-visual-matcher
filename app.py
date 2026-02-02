@@ -88,7 +88,7 @@ def fetch_html(url: str) -> Optional[str]:
 @st.cache_data(show_spinner=False, ttl=24 * 60 * 60)
 def extract_og_image(html: str) -> Optional[str]:
     try:
-        soup = BeautifulSoup(html, "lxml")
+        soup = BeautifulSoup(html, "html.parser")
         tag = soup.find("meta", property="og:image")
         if tag and tag.get("content"):
             return tag["content"].strip()
